@@ -112,7 +112,8 @@ export class FeedbackAPI {
   async getFeedback(from: Date, to: Date): Promise<Feedback[]> {
     const authToken = await this.jwtTokenProvider.getJWTToken();
     try {
-      const response = await axios.get(this.baseUrl + '/feedbacks', {
+
+      const response = await axios.get(this.baseUrl + '/feedbacks' + '?' + 'from=' + from.toISOString() + '&' + 'to=' + to.toISOString(), {
         headers: {
           Authorization: 'Bearer ' + authToken,
         },
